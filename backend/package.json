@@ -1,0 +1,32 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Servidor puente y proxy WebDAV para el reproductor HiBy R1",
+  "keywords": [
+    "hiby",
+    "hiby-music",
+    "hibyR1"
+  ],
+  "homepage": "https://github.com/FrancoColombano/hiby-music-manager#readme",
+  "bugs": {
+    "url": "https://github.com/FrancoColombano/hiby-music-manager/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrancoColombano/hiby-music-manager.git"
+  },
+  "license": "ISC",
+  "author": "FrancoColombano",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
