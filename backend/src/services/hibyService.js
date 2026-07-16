@@ -37,10 +37,43 @@ export const crearCarpeta = async (path) => {
         body: new URLSearchParams({
             path: path
         })
-    })
+    });
 
     if (!respuesta.ok) {
         throw new Error (`El HiBy respondió con código: ${respuesta.status}`);
     }
     return await respuesta.json();
 };
+
+export const moverArchivo = async (oldPath, newPath) => {
+    const URL = HIBY_IP + "/move";
+    const respuesta = await fetch(URL, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: new URLSearchParams({
+            oldPath: oldPath,
+            newPath: newPath
+        })
+    });
+
+    if (!respuesta.ok) {
+        throw new Error (`El HiBy respondió con código: ${respuesta.status}`);
+    }
+    return await respuesta.json();
+};
+
+export const eliminarArchivo = async (path) => {
+    const URL = HIBY_IP + "/delete";
+    const respuesta = await fetch(URL, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: new URLSearchParams({
+            path: path
+        })
+    });
+
+    if (!respuesta.ok) {
+        throw new Error (`El HiBy respondió con código: ${respuesta.status}`);
+    }
+    return await respuesta.json();
+}

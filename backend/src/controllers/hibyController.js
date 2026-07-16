@@ -48,4 +48,31 @@ export const crearCarpeta = async (req, res) => {
             detalles: error.message 
         });
     }
+};
+
+export const moverArchivo = async (req, res) => {
+    try {
+        const oldPath = req.body.oldPath;
+        const newPath = req.body.newPath;
+        const archivo = await hibyService.moverArchivo(oldPath, newPath);
+        return res.json(archivo);
+    } catch (error) {
+        return res.status(500).json({ 
+            error: "No se pudo mover la carpeta o archivo",
+            detalles: error.message 
+        });
+    }
+};
+
+export const eliminarArchivo = async (req, res) => {
+    try {
+        const path = req.body.path;
+        const archivo = await hibyService.eliminarArchivo(path);
+        return res.json(archivo)
+    } catch (error) {
+        return res.status(500).json({ 
+            error: "No se pudo eliminar la carpeta o archivo",
+            detalles: error.message 
+        });
+    }
 }
