@@ -6,7 +6,7 @@ const app = express();
 
 // Mas adelante middlewares globales 
 app.use(express.json());
-
+app.use(express.urlencoded({ extended: true }));
 // Mas adelante cors cuando conecte el frontend en React
 // import cors from 'cors';
 // app.use(cors({ origin: 'http://localhost:5173' }));

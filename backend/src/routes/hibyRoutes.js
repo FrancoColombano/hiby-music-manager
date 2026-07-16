@@ -5,8 +5,9 @@ import * as hibyController from '../controllers/hibyController.js';
 
 const router = Router();
 
-// Defino la ruta de prueba
 router.get('/probar-conexion', hibyController.probarConexion);
+router.get('/files', hibyController.listarCanciones);
+router.post('/files', hibyController.crearCarpeta);
 
 // Exportamos el router usando ES Modules (reemplaza al module.exports = router)
 export default router;

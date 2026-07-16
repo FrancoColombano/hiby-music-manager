@@ -22,3 +22,30 @@ export const probarConexion = async (req, res) => {
         });
     }
 };
+
+export const listarCanciones = async (req, res) => {
+    try {
+        const path = req.query.path;
+        const canciones = await hibyService.obtenerArchivos(path);
+        return res.json(canciones);
+
+    } catch (error) {     
+        return res.status(500).json({ 
+            error: "No se pudo listar las canciones",
+            detalles: error.message 
+        });
+    }
+};
+
+export const crearCarpeta = async (req, res) => {
+    try {
+        const path = req.body.path;
+        const carpeta = await hibyService.crearCarpeta(path);
+        return res.json(carpeta);
+    } catch (error) {
+        return res.status(500).json({ 
+            error: "No se pudo crear la carpeta",
+            detalles: error.message 
+        });
+    }
+}
