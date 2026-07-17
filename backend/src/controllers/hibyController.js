@@ -75,4 +75,93 @@ export const eliminarArchivo = async (req, res) => {
             detalles: error.message 
         });
     }
-}
+};
+
+/**export const subirArchivo = async (req, res) => {
+    try {
+        // req.file es inyectado automáticamente por el middleware de multer
+        if (!req.file) {
+            return res.status(400).json({ error: 'No se recibió ningún archivo en la petición' });
+        }
+
+        const { path, relativePath } = req.body;
+        const { buffer, originalname, mimetype } = req.file;
+
+        if (!path || !relativePath) {
+            return res.status(400).json({ error: 'Los campos path y relativePath son obligatorios' });
+        }
+
+        // Llamamos al servicio para retransmitir todo al HiBy
+        const resultado = await hibyService.subirArchivo(
+            path,
+            relativePath,
+            buffer,
+            originalname,
+            mimetype
+        );
+
+        res.json(resultado);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};*/
+
+export const subirArchivo = async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ error: 'No se recibió ningún archivo en la petición' });
+        }
+
+        const { path, relativePath } = req.body;
+        const { buffer, originalname } = req.file;
+
+        if (!path || !relativePath) {
+            return res.status(400).json({ error: 'Los campos path y relativePath son obligatorios' });
+        }
+
+        // Llamamos al servicio con los parámetros necesarios
+        const resultado = await hibyService.subirArchivo(
+            path,
+            relativePath,
+            buffer,
+            originalname
+        );
+
+        res.json(resultado);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+     /*   try {
+            await hibyService.crearCarpeta(path)
+        } catch (error) {
+            console.log(`[Upload] Nota: La carpeta ya existía o no se pudo crear: ${error.message}`);            
+        }
+*/
+/**export const subirArchivo = async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ error: 'No se recibió ningún archivo en la petición' });
+        }
+
+        const { path, relativePath } = req.body;
+        const { buffer, originalname, mimetype } = req.file; // Extraemos mimetype
+
+        if (!path || !relativePath) {
+            return res.status(400).json({ error: 'Los campos path y relativePath son obligatorios' });
+        }
+
+        const resultado = await hibyService.subirArchivo(
+            path,
+            relativePath,
+            buffer,
+            originalname,
+            mimetype // Lo pasamos como quinto parámetro
+        );
+
+        res.json(resultado);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};*/
